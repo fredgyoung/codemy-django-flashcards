@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+
+    {% if message %}
+        <div class="alert alert-{{ color }}" role="alert">{{ message }}</div>
+    {% endif %}
+
+    <h1><img src="static/images/{{ num_1 }}.png"> x <img src="static/images/{{ num_2 }}.png"></h1>
+
+    <form action="{% url 'multiply' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Type your answer here" name="answer">
+            <input type="hidden" name="old_num_1" value="{{ num_1 }}">
+            <input type="hidden" name="old_num_2" value="{{ num_2 }}">
+         </div>
+        <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+
+</center>
+
+{% endblock content %}
